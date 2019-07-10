@@ -6,9 +6,12 @@ let docGuessText = document.getElementById("guessLeft");
 let docLtrsCorrect = document.getElementById("lettersCorrect");
 let docLtrsInCorrect = document.getElementById("lettersInCorrect");
 let docHiddenText = document.getElementById("hiddenWordText");
+let docRestartText = document.getElementById("restartText");
+let docMoviePoster = document.getElementById("movieposter");
 
 //Set Global Variables
 let hiddenWord = "";
+let movieposter ="";
 let word = "";
 let wins = 0;
 let loss = 0;
@@ -23,87 +26,87 @@ let GWL =true;
 movieData = {
     "movie1": {
         title: "avatar",
-        imgsrc: "./assets/imgs/movies/avatar.jpeg"
+        imgsrc: "./movies/avatar.jpg"
     },
     "movie2": {
         title: "Avengers: Endgame",
-        imgsrc: "./assets/imgs/movies/Avengersendgame.jpeg"
+        imgsrc: "./movies/Avengersendgame.jpg"
     },
     "movie3": {
         title: "Titanic",
-        imgsrc: "./assets/imgs/movies/Titanic.jpeg"
+        imgsrc: "./movies/Titanic.jpg"
     },
     "movie4": {
         title: "Star Wars: The Force Awakens",
-        imgsrc: "./assets/imgs/movies/swforce.jpeg"
+        imgsrc: "./movies/swforce.jpg"
     },
     "movie4": {
         title: "Jurassic World",
-        imgsrc: "./assets/imgs/movies/jurassicWorld.jpeg"
+        imgsrc: "./movies/jurassicWorld.jpg"
     },
     "movie5": {
         title: "Black Panther",
-        imgsrc: "./assets/imgs/movies/blackpanther.jpeg"
+        imgsrc: "./movies/blackpanther.jpg"
     },
     "movie6": {
         title: "Harry Potter and the Deathly Hallows",
-        imgsrc: "./assets/imgs/movies/harrypotter.jpeg"
+        imgsrc: "./movies/harrypotter.jpg"
     },
     "movie7": {
         title: "Frozen",
-        imgsrc: "./assets/imgs/movies/frozen.jpeg"
+        imgsrc: "./movies/frozen.jpg"
     },
     "movie8": {
         title: "Beauty and the Beast",
-        imgsrc: "./assets/imgs/movies/beautyandbeast.jpeg"
+        imgsrc: "./movies/beautyandbeast.jpg"
     },
     "movie9": {
         title: "Incredibles 2",
-        imgsrc: "./assets/imgs/movies/incredibles.jpeg"
+        imgsrc: "./movies/incredibles.jpg"
     },
     "movie10": {
         title: "The Fate of the Furious",
-        imgsrc: "./assets/imgs/movies/fastandfurious.jpeg"
+        imgsrc: "./movies/fastandfurious.jpg"
     },
     "movie11": {
         title: "Aquaman",
-        imgsrc: "./assets/imgs/movies/aquaman.jpeg"
+        imgsrc: "./movies/aquaman.jpg"
     },
     "movie12": {
         title: "Captain Marvel",
-        imgsrc: "./assets/imgs/movies/cptmarvel.jpeg"
+        imgsrc: "./movies/cptmarvel.jpg"
     },
     "movie13": {
         title: "Wonder Woman",
-        imgsrc: "./assets/imgs/movies/wonderwoman.jpeg"
+        imgsrc: "./movies/wonderwoman.jpg"
     },
     "movie14": {
         title: "The Lord of the Rings: The Return of the King",
-        imgsrc: "./assets/imgs/movies/lordoftherings.jpeg"
+        imgsrc: "./movies/lordoftherings.jpg"
     },
     "movie15": {
         title: "Skyfall",
-        imgsrc: "./assets/imgs/movies/jamesbond.jpeg"
+        imgsrc: "./movies/jamesbond.jpg"
     },
     "movie16": {
         title: "The Dark Knight Rises",
-        imgsrc: "./assets/imgs/movies/batman.jpeg"
+        imgsrc: "./movies/batman.jpg"
     },
     "movie17": {
         title: "Toy Story 3",
-        imgsrc: "./assets/imgs/movies/toystory.jpeg"
+        imgsrc: "./movies/toystory.jpg"
     },
     "movie18": {
         title: "Alice in Wonderland",
-        imgsrc: "./assets/imgs/movies/AliceinWonderland.jpeg"
+        imgsrc: "./movies/AliceinWonderland.jpg"
     },
     "movie19": {
         title: "Zootopia",
-        imgsrc: "./assets/imgs/movies/Zootopia.jpeg"
+        imgsrc: "./movies/Zootopia.jpg"
     },
     "movie0": {
         title: "The Lion King",
-        imgsrc: "./assets/imgs/movies/loinking.jpeg"
+        imgsrc: "./movies/loinking.jpg"
     }
 
 }
@@ -122,6 +125,9 @@ let game={
         docHiddenText.innerText = hiddenWord;
         docWin.innerText = "Wins: " +wins;
         docError.innerText = ""
+        docRestartText.innerText = "";
+        docMoviePoster.src="";
+        docMoviePoster.style.display = "none";
     },
     checkInput: function(){
         
@@ -129,6 +135,8 @@ let game={
     getWord: function(){
         let choice = Math.floor(Math.random()*Object.keys(movieData).length);
         let movie = "movie"+choice;
+        movieposter=movieData[movie].imgsrc;
+        console.log(movieposter);
         word = movieData[movie].title;
         word = word.toLowerCase();
     },
@@ -154,13 +162,19 @@ let game={
     checkGame: function () {
         if(hiddenWord===word){
             docError.innerText = "You have Won!";
+            docRestartText.innerText = "Please Press 'Enter' to replay.";
             wins+=1;
             docWin.innerText= "Wins: "+wins;
+            docMoviePoster.src=movieposter;
+            docMoviePoster.style.display = "inline";
             flag=false;
             GWL=false;
         }
         if(guess==0){
             docError.innerText = "You have Lost!";
+            docRestartText.innerText = "Please Press 'Enter' to replay.";
+            docMoviePoster.src=movieposter;
+            docMoviePoster.style.display = "inline";
             loss+=1;
             docLoss.innerText= "Losses: "+loss;
             flag=false;

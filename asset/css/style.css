@@ -4,7 +4,10 @@
 h1.title{
     font-size: 5rem;
 }
-#errorMessage{
+#errorMessage,#restartText{
     font-size:2rem;
     color: red;
+}
+#movieposter{
+    width: 150px;
 }
