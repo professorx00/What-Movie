@@ -12,10 +12,12 @@ let hiddenWord = "";
 let word = "";
 let wins = 0;
 let loss = 0;
-let guess = 10;
+let guess = 4;
 let ltrsCorrect = "";
 let ltrsInCorrect="";
 let userLetter = "x"; // have not created the statment to gather this.
+let flag=false;
+let GWL =true;
 
 //Word Selection Choices
 movieData = {
@@ -109,15 +111,16 @@ movieData = {
 //Game Object
 let game={
     initalize: function(){
-        let guess=10;
-        let ltrsCorrect = "";
-        let ltrsInCorrect = "";
+        guess=4;
+        ltrsCorrect = "";
+        ltrsInCorrect = "";
         this.getWord();
         this.getHWord(word);
         docGuessText.innerText = guess;
         docLtrsCorrect.innerText = ltrsCorrect;
         docLtrsInCorrect.innerText = ltrsInCorrect;
         docHiddenText.innerText = hiddenWord;
+        docWin.innerText = "Wins: " +wins;
         docError.innerText = ""
     },
     checkInput: function(){
@@ -130,6 +133,7 @@ let game={
         word = word.toLowerCase();
     },
     getHWord: function(movieTitle){
+        hiddenWord = "";
         const extras = ["'", " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "&", ":", ".", "-"]
         for(let x =0;x<movieTitle.length;x++){
             let ltrCheck = true;
@@ -140,66 +144,98 @@ let game={
                 }
             }
             if(ltrCheck){
-                
                 hiddenWord = hiddenWord + "-";
             }
         }
         console.log(hiddenWord);
         console.log(movieTitle);
     },
-    addToUsed:function(correctCheck){
-        if(correctCheck){
-            console.log(userLetter);
-        }
-        else{
-            console.log("not found");
-        }
-    },
     // checks to see if the game is over.
-    checkGame: function(){
-        if(hiddenWord.search("-")<0 && guess>0){
-            win+=1;
-            docError.innerText = "You have WON! please press F1 to replay";
+    checkGame: function () {
+        if(hiddenWord===word){
+            docError.innerText = "You have Won!";
+            wins+=1;
+            docWin.innerText= "Wins: "+wins;
+            flag=false;
+            GWL=false;
         }
-        else if(hiddenWord.search("-")>0 && guess<=0){
+        if(guess==0){
+            docError.innerText = "You have Lost!";
             loss+=1;
-            docError.innerText = "You have Lost! please press F1 to replay";
+            docLoss.innerText= "Losses: "+loss;
+            flag=false;
+            GWL=false;
         }
-
     },
-    //checks if the hiddenword has the choosen word
+    //checks if the hiddenword has the choosen letter
     checkHiddenWord: function(){
         let check=false;
+        let exist = false;
         for(let x=0;x<word.length;x++){
             if(word[x]==userLetter){
                 hiddenWord = hiddenWord.substring(0, x) + userLetter + hiddenWord.substring(x + 1);
                 check=true;
             }
         }
+
+        //adds to correct storage of letter and minuses guess for incorrect letter
         if(check){
-            this.addToUsed(true);
+            for(let i=0;i<ltrsCorrect.length;i++){
+                if(ltrsCorrect[i]==userLetter){
+                    exist=true
+                }
+            }
+            if(!exist){
+                ltrsCorrect = ltrsCorrect + " " + userLetter;
+                docLtrsCorrect.innerText = ltrsCorrect;
+            }
+            
+            docHiddenText.innerText = hiddenWord;
         }
         else{
-            this.addToUsed(false);
-            guess-=1;
-            console.log(guess);
+            for(let i=0;i<ltrsInCorrect.length;i++){
+                if(ltrsInCorrect[i]==userLetter){
+                    exist=true
+                }
+            ;
+            }
+            if(!exist){
+                ltrsInCorrect = ltrsInCorrect + " " + userLetter;
+                docLtrsInCorrect.innerText = ltrsInCorrect;
+                if(guess>0){
+                  guess-=1;  
+                }
+
+                
+            }
+            docHiddenText.innerText = hiddenWord;
+            docGuessText.innerText = guess;
         }
     }
 }
 
 document.onkeyup = function(event){
-    if (event.keyCode >= 65 && event.keyCode <= 90) {
-        // Alphabet upper case
-        userLetter=event.key.toLowerCase();
-    } else if (event.keyCode >= 97 && event.keyCode <= 122) {
-        // Alphabet lower case
-        userLetter=event.key;
+    if(GWL){
+            //check to make sure its an alpha number
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
+            // Alphabet upper case
+            userLetter=event.key.toLowerCase();
+            game.checkHiddenWord();
+        } else if (event.keyCode >= 97 && event.keyCode <= 122) {
+            // Alphabet lower case
+            userLetter=event.key;
+            game.checkHiddenWord();
+        }
+        game.checkGame();
     }
-    else{
-        console.log(event.key);
-        console.log(event.keycode);
-    }
-    console.log(userLetter)
-    
+}
 
+document.onkeydown = function(event){
+    if(event.keyCode == 13){
+        if(flag===false){
+            game.initalize();
+            flag=true;
+            GWL=true; 
+        }
+    }
 }
