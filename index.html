@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="asset/css/style.css">
+</head>
+
+<body>
+    <div class=container>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <header>
+                    <h1 class="title">Word Game: Movie Edition</h1>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h3>Wins: <span id="win">0</span></h3>
+            </div>
+            <div class="col-md-6 text-center">
+                <h3>Losses: <span id="loss">0</span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <span id="hiddenWordText">Hidden Word</span>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <span id="errorMessage"></span>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                Guesses Left:<span id="guessLeft">10</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                    Letters guessed correct:
+                    <p><span id="lettersCorrect">a b c d e f g h i j k l m n o p q r s t u v w x</span></p>
+            </div>
+            <div class="col-md-6 text-center">
+                    Letters guessed incorrect:
+                    <p><span id="lettersInCorrect">a b c d e f g h i j k l m n o p q r s t u v w x</span></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="./asset/script/game.js"></script>
+</body>
+
+</html>

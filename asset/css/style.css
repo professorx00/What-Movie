@@ -1,0 +1,10 @@
+#hiddenWordText{
+    font-size: 4rem;
+}
+h1.title{
+    font-size: 5rem;
+}
+#errorMessage{
+    font-size:2rem;
+    color: red;
+}
