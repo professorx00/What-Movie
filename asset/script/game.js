@@ -15,7 +15,7 @@ let movieposter ="";
 let word = "";
 let wins = 0;
 let loss = 0;
-let guess = 4;
+let guess = 10;
 let ltrsCorrect = "";
 let ltrsInCorrect="";
 let userLetter = "x"; // have not created the statment to gather this.
@@ -114,7 +114,7 @@ movieData = {
 //Game Object
 let game={
     initalize: function(){
-        guess=4;
+        guess=10;
         ltrsCorrect = "";
         ltrsInCorrect = "";
         this.getWord();
