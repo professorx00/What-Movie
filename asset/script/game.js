@@ -26,11 +26,13 @@ let GWL =true;
 movieData = {
     "movie1": {
         title: "avatar",
-        imgsrc: "./movies/avatar.jpg"
+        imgsrc: "./movies/avatar.jpg",
+        soundsrc:"./sounds/avatar.mp3"
     },
     "movie2": {
         title: "Avengers: Endgame",
-        imgsrc: "./movies/Avengersendgame.jpg"
+        imgsrc: "./movies/Avengersendgame.jpg",
+        soundsrc:"./sounds/"
     },
     "movie3": {
         title: "Titanic",
@@ -109,6 +111,10 @@ movieData = {
         imgsrc: "./movies/loinking.jpg"
     }
 
+}
+
+AudioContoller = {
+    
 }
 
 //Game Object
