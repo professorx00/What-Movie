@@ -17,49 +17,50 @@
     <audio id="incorSound" src="./sounds/wrong.mp3"></audio>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center titlespace  img-fluid max-width: 100%">
-                <header>
-                    <h1 class="title">Word Game: Movie Edition</h1>
-                </header>
+            <div class="col-md-12 text-center titlespace ">
+                <div class="container border border-secondary rounded">
+                    <img src="./asset/imgs/title.png" alt="Snow" style="width:100%;">
+                    <div class="centered">Centered</div>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center mt-2">
                 <h3 id="win">Wins: 0</h3>
             </div>
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center mt-2">
                 <h3 id="loss">Losses: 0</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 text-center"></div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center m-2"></div>
+            <div class="col-md-4 text-center m-2">
                 <img id="movieposter" src="">
             </div>
-            <div class="col-md-4 text-center"></div>
+            <div class="col-md-4 text-center m-2"></div>
         </div>
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center m-2">
                 <span id="hiddenWordText">Please Press "Enter" to Start the Game</span>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center ">
                 <span id="errorMessage"></span>
                 <p><span id="restartText"></span></p>
             </div>
         </div>
         <div class="row leftOver">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center ">
                 Guesses Left:<span id="guessLeft">10</span>
             </div>
         </div>
         <div class="row leftOver">
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center mt-4">
                 Letters guessed correct:
                 <p><span id="lettersCorrect"></span></p>
             </div>
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center mt-4">
                 Letters guessed incorrect:
                 <p><span id="lettersInCorrect"></span></p>
             </div>
