@@ -8,31 +8,34 @@ let docLtrsInCorrect = document.getElementById("lettersInCorrect");
 let docHiddenText = document.getElementById("hiddenWordText");
 let docRestartText = document.getElementById("restartText");
 let docMoviePoster = document.getElementById("movieposter");
+let docQuizMusic = document.getElementById("quiz");
+let docCorMusic = document.getElementById("corSound");
+let docInCorMusic = document.getElementById("incorSound");
 
 //Set Global Variables
 let hiddenWord = "";
-let movieposter ="";
+let movieposter = "";
 let word = "";
 let wins = 0;
 let loss = 0;
 let guess = 10;
 let ltrsCorrect = "";
-let ltrsInCorrect="";
+let ltrsInCorrect = "";
 let userLetter = "x"; // have not created the statment to gather this.
-let flag=false;
-let GWL =true;
+let flag = false;
+let GWL = true;
 
 //Word Selection Choices
 movieData = {
     "movie1": {
         title: "avatar",
-        imgsrc: "./movies/avatar.jpg",
-        soundsrc:"./sounds/avatar.mp3"
+        imgsrc: "./movies/avatar.jpg"
+
     },
     "movie2": {
         title: "Avengers: Endgame",
-        imgsrc: "./movies/Avengersendgame.jpg",
-        soundsrc:"./sounds/"
+        imgsrc: "./movies/Avengersendgame.jpg"
+
     },
     "movie3": {
         title: "Titanic",
@@ -113,14 +116,31 @@ movieData = {
 
 }
 
-AudioContoller = {
-    
-}
-
 //Game Object
-let game={
-    initalize: function(){
-        guess=10;
+let game = {
+    
+    playQuizMusic: function () {
+        docQuizMusic.loop = true;
+        docQuizMusic.volume = 0.5;
+        docQuizMusic.play();
+        console.log(docQuizMusic);
+    },
+    pauseQuizMusic: function () {
+        docQuizMusic.pause();
+    },
+    restartQuizMusic: function () {
+        docQuizMusic.pause();
+        docQuizMusic.currentTime = 0;
+    },
+    corSoundPlay: function () {
+        docCorMusic.play();
+    },
+    incorSoundPlay: function () {
+        docInCorMusic.play();
+    },
+    initalize: function () {
+        this.playQuizMusic();
+        guess = 10;
         ltrsCorrect = "";
         ltrsInCorrect = "";
         this.getWord();
@@ -129,35 +149,32 @@ let game={
         docLtrsCorrect.innerText = ltrsCorrect;
         docLtrsInCorrect.innerText = ltrsInCorrect;
         docHiddenText.innerText = hiddenWord;
-        docWin.innerText = "Wins: " +wins;
+        docWin.innerText = "Wins: " + wins;
         docError.innerText = ""
         docRestartText.innerText = "";
-        docMoviePoster.src="";
+        docMoviePoster.src = "";
         docMoviePoster.style.display = "none";
     },
-    checkInput: function(){
-        
-    },
-    getWord: function(){
-        let choice = Math.floor(Math.random()*Object.keys(movieData).length);
-        let movie = "movie"+choice;
-        movieposter=movieData[movie].imgsrc;
+    getWord: function () {
+        let choice = Math.floor(Math.random() * Object.keys(movieData).length);
+        let movie = "movie" + choice;
+        movieposter = movieData[movie].imgsrc;
         console.log(movieposter);
         word = movieData[movie].title;
         word = word.toLowerCase();
     },
-    getHWord: function(movieTitle){
+    getHWord: function (movieTitle) {
         hiddenWord = "";
         const extras = ["'", " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "&", ":", ".", "-"]
-        for(let x =0;x<movieTitle.length;x++){
+        for (let x = 0; x < movieTitle.length; x++) {
             let ltrCheck = true;
-            for(let j = 0;j<extras.length;j++){
-                if(movieTitle[x]===extras[j]){
+            for (let j = 0; j < extras.length; j++) {
+                if (movieTitle[x] === extras[j]) {
                     hiddenWord = hiddenWord + extras[j];
                     ltrCheck = false;
                 }
             }
-            if(ltrCheck){
+            if (ltrCheck) {
                 hiddenWord = hiddenWord + "-";
             }
         }
@@ -166,67 +183,76 @@ let game={
     },
     // checks to see if the game is over.
     checkGame: function () {
-        if(hiddenWord===word){
+        if (hiddenWord === word) {
+            this.restartQuizMusic();
             docError.innerText = "You have Won!";
             docRestartText.innerText = "Please Press 'Enter' to replay.";
-            wins+=1;
-            docWin.innerText= "Wins: "+wins;
-            docMoviePoster.src=movieposter;
+            wins += 1;
+            docWin.innerText = "Wins: " + wins;
+            docMoviePoster.src = movieposter;
             docMoviePoster.style.display = "inline";
-            flag=false;
-            GWL=false;
+            flag = false;
+            GWL = false;
         }
-        if(guess==0){
+        if (guess == 0) {
+            this.restartQuizMusic();
             docError.innerText = "You have Lost!";
             docRestartText.innerText = "Please Press 'Enter' to replay.";
-            docMoviePoster.src=movieposter;
+            docMoviePoster.src = movieposter;
             docMoviePoster.style.display = "inline";
-            loss+=1;
-            docLoss.innerText= "Losses: "+loss;
-            flag=false;
-            GWL=false;
+            loss += 1;
+            docLoss.innerText = "Losses: " + loss;
+            flag = false;
+            GWL = false;
         }
     },
     //checks if the hiddenword has the choosen letter
-    checkHiddenWord: function(){
-        let check=false;
+    checkHiddenWord: function () {
+        let check = false;
         let exist = false;
-        for(let x=0;x<word.length;x++){
-            if(word[x]==userLetter){
+        for (let x = 0; x < word.length; x++) {
+            if (word[x] == userLetter) {
                 hiddenWord = hiddenWord.substring(0, x) + userLetter + hiddenWord.substring(x + 1);
-                check=true;
+                check = true;
             }
         }
 
         //adds to correct storage of letter and minuses guess for incorrect letter
-        if(check){
-            for(let i=0;i<ltrsCorrect.length;i++){
-                if(ltrsCorrect[i]==userLetter){
-                    exist=true
+        if (check) {
+            for (let i = 0; i < ltrsCorrect.length; i++) {
+                if (ltrsCorrect[i] == userLetter) {
+                    exist = true
                 }
             }
-            if(!exist){
+            if (!exist) {
                 ltrsCorrect = ltrsCorrect + " " + userLetter;
                 docLtrsCorrect.innerText = ltrsCorrect;
+                this.pauseQuizMusic();
+                this.corSoundPlay();
+                this.playQuizMusic();
+
             }
-            
+
             docHiddenText.innerText = hiddenWord;
         }
-        else{
-            for(let i=0;i<ltrsInCorrect.length;i++){
-                if(ltrsInCorrect[i]==userLetter){
-                    exist=true
+        else {
+            for (let i = 0; i < ltrsInCorrect.length; i++) {
+                if (ltrsInCorrect[i] == userLetter) {
+                    exist = true
                 }
-            ;
+                ;
             }
-            if(!exist){
+            if (!exist) {
                 ltrsInCorrect = ltrsInCorrect + " " + userLetter;
                 docLtrsInCorrect.innerText = ltrsInCorrect;
-                if(guess>0){
-                  guess-=1;  
+                if (guess > 0) {
+                    guess -= 1;
+                    this.pauseQuizMusic();
+                    this.incorSoundPlay();
+                    this.playQuizMusic();
                 }
 
-                
+
             }
             docHiddenText.innerText = hiddenWord;
             docGuessText.innerText = guess;
@@ -234,28 +260,28 @@ let game={
     }
 }
 
-document.onkeyup = function(event){
-    if(GWL){
-            //check to make sure its an alpha number
+document.onkeyup = function (event) {
+    if (GWL) {
+        //check to make sure its an alpha number
         if (event.keyCode >= 65 && event.keyCode <= 90) {
             // Alphabet upper case
-            userLetter=event.key.toLowerCase();
+            userLetter = event.key.toLowerCase();
             game.checkHiddenWord();
         } else if (event.keyCode >= 97 && event.keyCode <= 122) {
             // Alphabet lower case
-            userLetter=event.key;
+            userLetter = event.key;
             game.checkHiddenWord();
         }
         game.checkGame();
     }
 }
 
-document.onkeydown = function(event){
-    if(event.keyCode == 13){
-        if(flag===false){
+document.onkeydown = function (event) {
+    if (event.keyCode == 13) {
+        if (flag === false) {
             game.initalize();
-            flag=true;
-            GWL=true; 
+            flag = true;
+            GWL = true;
         }
     }
 }
