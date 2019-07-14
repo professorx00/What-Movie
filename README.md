@@ -8,15 +8,14 @@ You will need to press 'Enter' to start the game.
 
 
 ### Prerequisites
-Browser Requirements:
-    Chrome: (Current - 1) and Current
-    Edge: (Current - 1) and Current
-    Firefox: (Current - 1) and Current, ESR
-    Internet Explorer: 9+
-    Safari: (Current - 1) and Current
-    Opera: Current
-
-Keyboard is required (virtual or phsyical)
+*Browser Requirements:
+    *Chrome: (Current - 1) and Current
+    *Edge: (Current - 1) and Current
+    *Firefox: (Current - 1) and Current, ESR
+    *Internet Explorer: 9+
+    *Safari: (Current - 1) and Current
+    *Opera: Current
+*Keyboard is required (virtual or phsyical)
 
 
 ### Avaiable Functions
