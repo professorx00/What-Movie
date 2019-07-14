@@ -118,26 +118,31 @@ movieData = {
 
 //Game Object
 let game = {
-    
+    //Plays Music
     playQuizMusic: function () {
         docQuizMusic.loop = true;
         docQuizMusic.volume = 0.5;
         docQuizMusic.play();
         console.log(docQuizMusic);
     },
+    //pause Music
     pauseQuizMusic: function () {
         docQuizMusic.pause();
     },
+    //restarts the background music
     restartQuizMusic: function () {
         docQuizMusic.pause();
         docQuizMusic.currentTime = 0;
     },
+    //correct guess sound
     corSoundPlay: function () {
         docCorMusic.play();
     },
+    //incorrect guess sound
     incorSoundPlay: function () {
         docInCorMusic.play();
     },
+    //starts the game--loads variables
     initalize: function () {
         this.playQuizMusic();
         guess = 10;
@@ -155,6 +160,7 @@ let game = {
         docMoviePoster.src = "";
         docMoviePoster.style.display = "none";
     },
+    //picks a random movie
     getWord: function () {
         let choice = Math.floor(Math.random() * Object.keys(movieData).length);
         let movie = "movie" + choice;
@@ -162,6 +168,7 @@ let game = {
         word = movieData[movie].title;
         word = word.toLowerCase();
     },
+    // creates the hidden word from the picked word
     getHWord: function (movieTitle) {
         hiddenWord = "";
         const extras = ["'", " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "&", ":", ".", "-"]
@@ -182,7 +189,8 @@ let game = {
     },
     // checks to see if the game is over.
     checkGame: function () {
-        if (hiddenWord === word) {
+
+        if (hiddenWord === word) {//Game won scenerio
             this.restartQuizMusic();
             docError.innerText = "You have Won!";
             docRestartText.innerText = "Please Press 'Enter' to replay.";
@@ -194,7 +202,7 @@ let game = {
             flag = false;
             GWL = false;
         }
-        if (guess == 0) {
+        if (guess == 0) {//game lost scenerio
             this.restartQuizMusic();
             docError.innerText = "You have Lost!";
             docRestartText.innerText = "Please Press 'Enter' to replay.";
@@ -278,6 +286,7 @@ document.onkeyup = function (event) {
 }
 
 document.onkeydown = function (event) {
+    //checks to see if Enter was push to start the game;
     if (event.keyCode == 13) {
         if (flag === false) {
             game.initalize();
