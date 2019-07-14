@@ -18,7 +18,7 @@ let movieposter = "";
 let word = "";
 let wins = 0;
 let loss = 0;
-let guess = 10;
+let guess = 8;
 let ltrsCorrect = "";
 let ltrsInCorrect = "";
 let userLetter = "x"; // have not created the statment to gather this.
@@ -121,7 +121,7 @@ let game = {
     //Plays Music
     playQuizMusic: function () {
         docQuizMusic.loop = true;
-        docQuizMusic.volume = 0.5;
+        docQuizMusic.volume = 0.7;
         docQuizMusic.play();
         console.log(docQuizMusic);
     },
@@ -145,7 +145,7 @@ let game = {
     //starts the game--loads variables
     initalize: function () {
         this.playQuizMusic();
-        guess = 10;
+        guess = 8;
         ltrsCorrect = "";
         ltrsInCorrect = "";
         this.getWord();
