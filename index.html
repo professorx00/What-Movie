@@ -8,75 +8,68 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" type="text/css" href="asset/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
     <audio id="quiz" src="./sounds/quiz.mp3"></audio>
     <audio id="corSound" src="./sounds/whoosh.mp3"></audio>
     <audio id="incorSound" src="./sounds/wrong.mp3"></audio>
-    <header>
-        <div class="container">
-            <div class="card bg-dark text-white">
-                <img src="./asset/imgs/title.png" class="card-img imageResize" alt="...">
-                <div class="card-img-overlay">
-                    <h1 class="card-title title">Word Finder: Movie Edition</h1>
-                </div>
+    <div class="container titleCustom rounded mt-5">
+
+        <div class="row">
+            <div class="col-md-12 text-center py-5 mt-2">
+                <h1 class="title">Word Finder: Movie Edition</h1>
             </div>
         </div>
 
-    </header>
 
-    <div class="container">
         <div class="row">
-            <div class="col-md-6 text-center mt-2">
-                <h3 id="win">Wins: 0</h3>
+            <div class="col-md-6 text-center pt-3 ">
+                <h3 id="win" class="shadow">Wins: 0</h3>
             </div>
-            <div class="col-md-6 text-center mt-2">
-                <h3 id="loss">Losses: 0</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 text-center m-2"></div>
-            <div class="col-md-4 text-center m-2">
-                <img id="movieposter" src="">
-            </div>
-            <div class="col-md-4 text-center m-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center m-2">
-                <span id="hiddenWordText">Please Press "Enter" to Start the Game</span>
+            <div class="col-md-6 text-center pt-3 ">
+                <h3 id="loss" class="shadow">Losses: 0</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 text-center ">
-                <span id="errorMessage"></span>
-                <p><span id="restartText"></span></p>
+            <div class="col-md-4 text-center pt-3 "></div>
+            <div class="col-md-4 text-center pt-3 ">
+                <img id="movieposter" class="shadow " src="">
+            </div>
+            <div class="col-md-4 text-center pt-3 "></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center pt-3 ">
+                <span id="hiddenWordText" class="shadow">Please Press "Enter" to Start the Game</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center  pt-3 ">
+                <span id="errorMessage" class="yellowshadow"></span>
+                <p><span id="restartText" class="yellowshadow"></span></p>
             </div>
         </div>
         <div class="row leftOver">
-            <div class="col-md-12 text-center ">
-                Guesses Left:<span id="guessLeft">10</span>
+            <div class="col-md-12 text-center pt-3">
+                <span class="shadow">Guesses Left:<span id="guessLeft">10</span></span>
             </div>
         </div>
         <div class="row leftOver">
-            <div class="col-md-6 text-center mt-4">
-                Letters guessed correct:
-                <p><span id="lettersCorrect"></span></p>
+            <div class="col-md-6 text-center pt-4 ">
+                <span class="shadow">Letters guessed correct:</span>
+                <p><span id="lettersCorrect" class="shadow"></span></p>
             </div>
-            <div class="col-md-6 text-center mt-4">
-                Letters guessed incorrect:
-                <p><span id="lettersInCorrect"></span></p>
+            <div class="col-md-6 text-center pt-4 ">
+                <span class="shadow">Letters guessed incorrect:</span>
+                <p><span id="lettersInCorrect" class="shadow"></span></p>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
     <script src="./asset/script/game.js"></script>
 </body>
 

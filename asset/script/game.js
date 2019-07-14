@@ -159,7 +159,6 @@ let game = {
         let choice = Math.floor(Math.random() * Object.keys(movieData).length);
         let movie = "movie" + choice;
         movieposter = movieData[movie].imgsrc;
-        console.log(movieposter);
         word = movieData[movie].title;
         word = word.toLowerCase();
     },
@@ -191,6 +190,7 @@ let game = {
             docWin.innerText = "Wins: " + wins;
             docMoviePoster.src = movieposter;
             docMoviePoster.style.display = "inline";
+            $("#movieposter").addClass("animate fadeIn");
             flag = false;
             GWL = false;
         }
@@ -200,6 +200,7 @@ let game = {
             docRestartText.innerText = "Please Press 'Enter' to replay.";
             docMoviePoster.src = movieposter;
             docMoviePoster.style.display = "inline";
+            $("#movieposter").addClass("animate fadeIn");
             loss += 1;
             docLoss.innerText = "Losses: " + loss;
             flag = false;
